@@ -1,0 +1,75 @@
+<ng-template #customLoadingTemplate>
+  <div class="custom-class">
+
+  </div>
+</ng-template>
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+<app-header></app-header>
+<app-title [title]="'Update Tester'"></app-title>
+<div class="container">
+
+    <div class="row m-b-18px">
+        <div class="col-md-12 col-sm-12">
+          <a (click)="readUsers()" class='btn btn-primary pull-right'>
+            <span class='glyphicon glyphicon-list'></span> Testers List
+          </a>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+      
+          <!-- HTML form for creating a product -->
+          <form [formGroup]="update_user_form" (ngSubmit)="updateUser()">
+            <table class='table table-hover table-responsive table-bordered'>
+              <tr>
+                <td> Tester ID </td>
+              <td>
+                <!-- Bind this input field to our 'angular form field' using formControlName -->
+                <input
+                  formControlName="userID"
+                  name="userID" type="text" readonly
+                  class="form-control" required />
+      
+                <!-- show this error if the field is 'empty' and 'touched' -->
+                <div
+                  *ngIf=" update_user_form.get('userID').touched && update_user_form.get('userID').hasError('required') "
+                  class="alert alert-danger">
+                  User ID is required.
+                </div>
+              </td>
+              </tr>
+      
+              <tr>
+                <td>Tester Name</td>
+                <td>
+                  <input formControlName="username"
+                         type='text' username='username'
+                         class='form-control' required />
+                  <!-- show this error if the field is 'touched' and 'empty' -->
+                  <div
+                    *ngIf="update_user_form.get('username').touched && update_user_form.get('username').hasError('required')"
+                    class="alert alert-danger">
+                    Tester Name is required.
+                  </div>
+                </td>
+              </tr>
+      
+              <tr>
+                <td></td>
+                <td>
+                  <!-- Submit buttons is [disabled] if form is invalid. -->
+                  <button class="btn btn-primary" type="submit" [disabled]="update_user_form.invalid">
+                    <span class="glyphicon glyphicon-edit"></span> Update
+                  </button>
+                </td>
+              </tr>
+      
+            </table>
+          </form>
+      
+        </div>
+      </div>
+      
+</div>

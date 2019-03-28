@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+.m-b-18px{ margin-bottom: 18px; }
+.m-r-5px{ margin-right: 5px; }
+.w-40-pct{ width: 40%; }
+.text-align-center{ text-align: center; }
+.bg-blue{background-color: rgba(0, 123, 255, 0.747)}
+.mt-3{margin-top:12px}
+.bg-lightgray{background-color: rgba(106, 209, 149, 0.596)}
+.shadow{box-shadow: 0 0 10px black}
+.table-hover:hover {
+    background-color: darkgray;
+    color: white;
+}
+
+  

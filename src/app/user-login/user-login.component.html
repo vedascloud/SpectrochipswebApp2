@@ -1,0 +1,67 @@
+<app-header [hideLogOut]=true></app-header>
+<app-title [title]="'Admin Pannel'"></app-title>
+<ng-template #customLoadingTemplate>
+  <div class="custom-class"></div>
+</ng-template>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+<div class="col-md-12">
+  <div class="col-md-6 col-md-offset-3">
+    <form [formGroup]="user_login_form" (ngSubmit)="userLogin()">
+      <table class="table  table-responsive " width="">
+        <tr class="table-hover">
+          <td>Username</td>
+          <td>
+            <!-- Bind this input field to our 'angular form field' using formControlName -->
+            <input
+              formControlName="username"
+              name="username" type="text"
+              class="form-control" required />
+
+            <!-- show this error if the field is 'empty' and 'touched' -->
+            <div
+              *ngIf=" user_login_form.get('username').touched && user_login_form.get('username').hasError('required') "
+              class="alert alert-danger">
+              username is required.
+            </div>
+
+          </td>
+        </tr>
+
+        <tr>
+          <td>Password</td>
+          <td>
+            <input
+              formControlName="password"
+              name="password" type="password"
+              class="form-control"  required />
+
+            <!-- show this error if the field is 'empty' and 'touched' -->
+            <div
+              *ngIf="user_login_form.get('password').touched && user_login_form.get('password').hasError('required')"
+              class="alert alert-danger">
+              password is required.
+            </div>
+            <div *ngIf="!authenticationFlag" class="alert alert-danger">Username or password wrong contact Admin</div>
+
+          </td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td>
+            <!-- disable the submit button if the form is 'invalid' -->
+            <button class="btn btn-primary shadow"  type="submit"  [disabled]="user_login_form.invalid">
+              <span class="glyphicon glyphicon-log-in"></span> Login
+            </button>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+
+</div>
+
+
+
+
+

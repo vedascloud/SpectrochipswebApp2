@@ -1,0 +1,18 @@
+{
+  "universal": {
+    "skipInstall": false,
+    "directory": ".",
+    "http": true,
+    "project": "SpectrochipsWebApp"
+  },
+  "serverless": {
+    "provider": "aws",
+    "skipInstall": false,
+    "directory": ".",
+    "project": "SpectrochipsWebApp",
+    "serverless": {
+      "aws": {},
+      "gcloud": {}
+    }
+  }
+}

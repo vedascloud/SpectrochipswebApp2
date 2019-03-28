@@ -1,0 +1,32 @@
+<ng-template #customLoadingTemplate>
+  <div class="custom-class">
+
+  </div>
+</ng-template>
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+<app-header></app-header>
+<app-title *ngIf="selectedFileType== 'sequenceFiles'"  [title]="'Sequence File'"></app-title>
+<app-title *ngIf="selectedFileType== 'testFiles'"  [title]="'Test File'"></app-title>
+<div class="container">
+  
+<div class="row m-b-18px">
+  <div class="col-md-12 col-sm-12">
+
+    <a (click)="readUsers()" class='btn btn-primary  pull-right'>
+      <span class='glyphicon glyphicon-list'></span> Testers List
+    </a>
+</div>
+
+</div>
+
+
+<div class="row">
+  <div class="col-md-12 col-sm-12">
+    <!-- HTML table for displaying a product details -->
+    <pre>
+       {{jsdata}}
+    </pre>
+  </div>
+</div>
+</div>

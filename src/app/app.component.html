@@ -1,0 +1,143 @@
+<!--<IMG SRC="logo.jpg" ALT="some text" WIDTH=60 HEIGHT=40>-->
+ 
+    <!-- container -->
+    <div>
+      <!-- show page header --> 
+      <router-outlet></router-outlet>
+      <!-- <app-user-login
+        *ngIf="show_user_login_html"
+        (show_read_users_event)="showReadUsers($event)">
+      </app-user-login> -->
+      
+    <!---  <app-read-files
+        *ngIf="show_read_files_html"
+        [url]="url"
+        [username]="username"
+        (show_read_users_event)="showReadUsers($event)">
+      </app-read-files>-->
+    
+      <!-- Show this view if "show_read_products_html" property of AppComponent is true. -->
+      <app-read-users
+        *ngIf="show_read_users_html"
+        (show_create_user_event)="showCreateUser($event)"
+        (show_read_one_user_event)="showReadOneUser($event)"
+        (show_update_user_event)="showUpdateUser($event)"
+        (show_delete_user_event)="showDeleteUser($event)"
+        (show_user_login_event)="showUserLogin($event)"
+        (show_user_files_event)="showReadFiles($event)"
+        (show_read_files_event)="showReadFiles($event)"
+        (show_create_test_event)="showCreateTest($event)"
+        (show_create_sequence_event)="showCreateSequence($event)"
+        (show_update_test_event)="showUpdateTest($event)"
+        (show_update_sequence_event)="showUpdateSequence($event)"
+        (show_delete_test_event)="showDeleteTest($event)"
+        (show_delete_sequence_event)="showDeleteSequence($event)"
+        [username]="username">
+      </app-read-users>
+    
+      <app-create-user
+        *ngIf="show_create_user_html"
+        [username]="username"
+        (show_read_users_event)="showReadUsers($event)">
+      </app-create-user>
+    
+      <app-create-testuser
+      *ngIf="show_create_testuser_html"
+      (show_read_one_user_event)="showReadOneUser($event)"
+      [userID]="userID"
+      [username]="username">
+      </app-create-testuser>
+    
+      <app-create-sequenceuser
+      *ngIf="show_create_sequenceuser_html"
+      (show_read_one_user_event)="showReadOneUser($event)"
+      [userID]="userID"
+      [username]="username">
+      </app-create-sequenceuser>
+    
+      <app-create-test
+      *ngIf="show_create_test_html"
+      (show_read_users_event)="showReadUsers($event)"
+      [username]="username">
+      </app-create-test>
+    
+      <app-create-sequence
+      *ngIf="show_create_sequence_html"
+      (show_read_users_event)="showReadUsers($event)"
+      [username]="username">
+      </app-create-sequence>
+    
+      <app-update-test
+      *ngIf="show_update_test_html"
+      (show_read_users_event)="showReadUsers($event)"
+      [url]="url"
+      [username]="username"></app-update-test>
+    
+      <app-update-sequence
+      *ngIf="show_update_sequence_html"
+      (show_read_users_event)="showReadUsers($event)"
+      [url]="url"
+      [username]="username"></app-update-sequence>
+    
+      <!--
+        * Show this view if "show_read_one_product_html" is true.
+    
+        * If (show_read_products_event) was emmited in ReadOneProductComponent,
+          trigger showReadProducts() method in AppComponent.
+    
+        * Pass "product_id" property value of AppComponent
+          to [product_id] property of ReadOneProductComponent.
+    -->
+    
+      <app-read-one-user
+        *ngIf="show_read_one_user_html"
+        (show_read_users_event)="showReadUsers($event)"
+        (show_read_files_event)="showReadFiles($event)"
+        (show_create_testuser_event)="showCreateTestuser($event)"
+        (show_create_sequenceuser_event)="showCreateSequenceuser($event)"
+      >
+      </app-read-one-user>
+    
+      <!--
+        * Show this view if "show_update_product_html" is true.
+    
+        * Pass "product_id" property value of AppComponent
+          to [product_id] property of UpdateProductComponent.
+    
+        * If (show_read_products_event) was emitted in UpdateProductComponent,
+          trigger showReadProducts() method in AppComponent.
+    -->
+    
+      <!-- <app-update-user
+        *ngIf="show_update_user_html"
+        (show_read_users_event)="showReadUsers($event)">
+      </app-update-user> -->
+    
+    <!---
+      <app-delete-user
+        *ngIf="show_delete_user_html"
+        [userID]="userID"
+        [username]="username"
+        (show_read_users_event)="showReadUsers($event)">
+      </app-delete-user>
+    -->
+    
+      <app-delete-test
+      *ngIf="show_delete_test_html"
+      [username]="username"
+      [url]="url"
+      (show_read_users_event)="showReadUsers($event)">
+      </app-delete-test>
+    
+      <app-delete-sequence
+      *ngIf="show_delete_sequence_html"
+      [username]="username"
+      [url]="url"
+      (show_read_users_event)="showReadUsers($event)">
+      </app-delete-sequence>
+    
+    
+    </div>
+   
+  
+   

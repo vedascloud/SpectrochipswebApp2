@@ -1,0 +1,156 @@
+<app-header></app-header>
+<app-title [title]="'Testers Information'"></app-title>
+<div class="container">
+    <ng-template #customLoadingTemplate>
+        <div class="custom-class">
+      
+        </div>
+      </ng-template>
+      
+      <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+      
+      <div class="row m-b-18px">
+        <div class="col-md-12 col-sm-12">
+      
+          <a (click)="readUsers()" class='btn btn-primary  shadow pull-right'>
+            <span class='glyphicon glyphicon-list'></span> Testers List
+          </a>
+      
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <!-- HTML table for displaying a product details -->
+          <div class="table-responsive">
+            <table class='table  table-bordered '>
+      
+              <tr class="bg-success text-align-center">
+                <td class="w-40-pct">User ID</td>
+                <td>{{user?.userID}}</td>
+              </tr>
+        
+              <tr class="table-hover bg-lightgray text-align-center">
+                <td>Username</td>
+                <td>{{user?.username}}</td>
+              </tr>
+        
+              <tr class="table-hover bg-lightgray text-align-center">
+                <td>Timestamp</td>
+                <td>{{user?.timestamp}}</td>
+              </tr>
+        
+            </table>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-16 col-sm-12">
+          <div class='page-header'><h3>Sequence Files</h3></div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <a (click)="createSequenceuser('Create a new Sequence File')" class='btn btn-primary pull-right shadow'>
+            <span class='glyphicon glyphicon-plus'></span> New Sequence File
+          </a>
+          <br><br><br>
+          <!-- HTML table for our list of product records -->
+         <div class="table-responsive">
+          <table class='table  table-bordered'>
+      
+            <div *ngIf="user?.sequenceFiles.length==0" class="col-md-12 col-sm-12">
+              <p style="font-size:15px;color:red;">No Sequence files Available</p>
+            </div>
+      
+            <tr class="bg-success" *ngIf="user?.sequenceFiles.length>0" >
+              <th class="text-align-center">File Name</th>
+              <th class="text-align-center">Added Time</th>
+              <th class="text-align-center">Actions</th>
+            </tr>
+      
+            <!-- Use *ngFor directive to loop throught our list of users. -->
+            <tr *ngFor="let json of user?.sequenceFiles" class="table-hover bg-lightgray text-align-center">
+              <td>{{json.filename}}</td>
+              <td>{{json.timestamp}}</td>
+              <td>
+                <!-- read one user button -->
+                <a (click)="readJsonData(json._id,'sequenceFiles')" class='btn btn-primary m-r-5px shadow'>
+                  <span class='glyphicon glyphicon-eye-open'></span> View
+                </a>
+      
+                <!-- edit user button -->
+                <a (click)="downloadFile(json.downloadLink)" class='btn btn-success m-r-5px shadow'>
+                  <span class='glyphicon glyphicon-download'></span> Download
+                </a>
+      
+                <!-- delete user button -->
+      
+                <a (click)="deleteSeqfile(json.url)" class='btn btn-danger m-r-5px shadow'>
+                  <span class='glyphicon glyphicon-remove'></span> Delete
+                </a>
+              </td>
+            </tr>
+          </table>
+         </div>
+        </div>
+      </div>
+      
+      
+      <div class="row">
+        <div class="col-md-10 col-sm-10">
+          <div class='page-header'><h3>Test Files</h3></div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <a (click)="createTestuser('Create a new Test File')" class='btn btn-primary pull-right'>
+            <span class='glyphicon glyphicon-plus'></span> New Test File
+          </a>
+          <br><br><br>
+          <!-- HTML table for our list of product records -->
+          <div class="table-responsive">
+
+            <table class='table table-bordered bg-lightgray'>
+              <div *ngIf="user?.testFiles.length==0" class="col-md-12">
+                <p style="font-size:15px;color:red;">No Test files Available</p>
+              </div>
+        
+              <tr class="bg-success" *ngIf="user?.testFiles.length>0">
+                <th class="text-align-center">File Name</th>
+                <th class="text-align-center">Added Time</th>
+                <th class="text-align-center">Actions</th>
+              </tr>
+        
+              <!-- Use *ngFor directive to loop throught our list of users. -->
+              <tr *ngFor="let json of user?.testFiles" class="table-hover bg-lightgray text-align-center">
+                <td>{{json.filename}}</td>
+                <td>{{json.timestamp}}</td>
+        
+                <td>
+                  <!-- read one user button -->
+                  <a (click)="readJsonData(json._id, 'testFiles')" class='btn btn-primary m-r-5px shadow'>
+                    <span class='glyphicon glyphicon-eye-open'></span> View
+                  </a>
+        
+                  <!-- edit user button -->
+                  <a (click)="downloadFile(json.downloadLink)" class='btn btn-success m-r-5px shadow'>
+                    <span class='glyphicon glyphicon-download'></span> Download
+                  </a>
+        
+                  <!-- delete user button -->
+        
+                  <a (click)="deleteTestfile(json.url)" class='btn btn-danger m-r-5px shadow'>
+                    <span class='glyphicon glyphicon-remove'></span> Delete
+                  </a>
+        
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+</div>

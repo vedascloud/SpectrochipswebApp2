@@ -1,0 +1,118 @@
+<app-header></app-header>
+<app-title [title]="'Testers List'"></app-title>
+<ng-template #customLoadingTemplate>
+  <div class="custom-class">
+
+  </div>
+</ng-template>
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+<div class="container">
+  
+<div class="row m-b-18px">
+  <div class="col-md-12">
+    <a (click)="readUsers()" class='btn btn-primary pull-right'>
+      <span class='glyphicon glyphicon-list'></span> Testers List
+    </a>
+  </div>
+</div>
+
+<!-- HTML form for creating a product -->
+<div class="row">
+  <div class="col-md-12">
+
+    <!--
+        1. Bind our HTML form to Angular using [formGroup]
+        2. If form was submitted, call createProduct() method of CreateProductComponent
+    -->
+    <form [formGroup]="create_user_form" (ngSubmit)="createUser()">
+     <div class="table-responsive">
+      <table class="table">
+        <tr>
+          <td>UserID</td>
+          <td>
+            <!-- Bind this input field to our 'angular form field' using formControlName -->
+            <input
+              formControlName="userID"
+              name="userID" type="text"
+              class="form-control focus" required />
+
+            <!-- show this error if the field is 'empty' and 'touched' -->
+            <div
+              *ngIf=" create_user_form.get('userID').touched && create_user_form.get('userID').hasError('required') "
+              class="alert alert-danger">
+              User ID is required.
+            </div>
+
+            <div *ngIf="!authenticationFlag" class="alert alert-danger">User ID already Taken try with new one</div>
+
+          </td>
+        </tr>
+
+        <tr>
+          <td>Tester Name</td>
+          <td>
+            <input
+              formControlName="username"
+              name="username"
+              class="form-control" required />
+
+            <!-- show this error if the field is 'empty' and 'touched' -->
+            <div
+              *ngIf="create_user_form.get('username').touched && create_user_form.get('username').hasError('required')"
+              class="alert alert-danger">
+              Testername is required.
+            </div>
+          </td>
+        </tr>
+
+        <!--<tr>
+          <td>Description</td>
+          <td>
+            <textarea
+              formControlName="description"
+              name="description" class="form-control" required></textarea>
+
+            &lt;!&ndash; show this error if the field is 'empty' and 'touched' &ndash;&gt;
+            <div
+              *ngIf="create_product_form.get('description').touched && create_product_form.get('description').hasError('required')"
+              class="alert alert-danger">
+              Description is required.
+            </div>
+          </td>
+        </tr>-->
+
+        <tr>
+          <td>Role</td>
+          <td>
+            <select formControlName="role_id" name="role_id" class="form-control">
+              <option *ngFor="let role of roles" value="{{role.id}}">
+                {{role.name}}
+              </option>
+            </select>
+            <!-- show this error if the field is 'empty' and 'touched' -->
+            <div
+              *ngIf="create_user_form.get('role_id').touched && create_user_form.get('role_id').hasError('required')"
+              class="alert alert-danger">
+              Role is required.
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td>
+            <!-- disable the submit button if the form is 'invalid' -->
+            <button class="btn btn-primary" type="submit" [disabled]="create_user_form.invalid">
+              <span class="glyphicon glyphicon-plus"></span> Create
+            </button>
+          </td>
+        </tr>
+      </table>
+     </div>
+    </form>
+
+  </div>
+</div>
+
+</div>

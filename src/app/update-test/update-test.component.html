@@ -1,0 +1,39 @@
+<ng-template #customLoadingTemplate>
+  <div class="custom-class">
+
+  </div>
+</ng-template>
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+
+<app-header></app-header>
+<app-title [title]="'Update Test'"></app-title>
+<div class="container">
+
+    <div class="row m-b-18px">
+        <div class="col-md-12">
+          <a (click)="readUsers()" class='btn btn-primary pull-right'>
+            <span class='glyphicon glyphicon-list'></span> Testers List
+          </a>
+        </div>
+      </div>
+      
+      <!--
+      <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".json">
+      -->
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      
+        <div class="form-group">
+          <div class="upload-drop-zone">
+            <file-drop headertext="Drop files here" id = "avatar" (onFileDrop)="dropped($event)"
+                       (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+            </file-drop>
+          </div>
+          <br>
+          <button type="submit" [disabled]="form.invalid" class="btn btn-success center-block">Submit <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i></button>
+        </div>
+    <!----    <button type="submit" [disabled]="form.invalid || loading" class="btn btn-success">Submit <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i></button>
+    -->
+      </form>
+      
+</div>

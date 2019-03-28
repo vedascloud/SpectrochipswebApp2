@@ -1,0 +1,191 @@
+<app-header></app-header>
+<app-title [title]="'Read Testers'"></app-title>
+<div class="my-container">
+  <ng-template #customLoadingTemplate>
+    <div class="custom-class">
+    </div>
+  </ng-template>
+  
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '1px' }"  [template]="customLoadingTemplate"></ngx-loading>
+  
+</div>
+<div class="container">
+  <div class="row m-b-18px">
+    <div class="col-md-12 col-sm-12 pull-right">
+      <!-- button to create new product -->
+      <a (click)="createUser()" class='btn btn-primary shadow btn-sm pull-right'>
+        <span class='glyphicon glyphicon-plus'></span> Create New Tester
+      </a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 col-sm-12">
+
+      <!-- HTML table for our list of product records -->
+      <div class="table-responsive">
+        <table class='table table-bordered '>
+
+          <tr class="bg-success">
+            <th class="text-align-center">User ID</th>
+            <th class="text-align-center">Username</th>
+            <th class="text-align-center">Timestamp</th>
+            <th class="text-align-center">Actions</th>
+          </tr>
+
+          <!-- Use *ngFor directive to loop throught our list of users. -->
+          <tr *ngFor="let user of users" class="table-hover bg-lightgray text-align-center">
+           <td class="" (click)="readOneUser(user.userID)" >{{user.userID}}</td>
+            <td class="" (click)="readOneUser(user.userID)">{{user.username}}</td>
+            <td class="" (click)="readOneUser(user.userID)">{{user.timestamp | date:'dd/MM/yyyy h:mm a'}}</td>
+            <td>
+              <!-- read one user button -->
+              <a (click)="readOneUser(user.userID)" class='btn btn-primary m-r-5px shadow'>
+                <span class='glyphicon glyphicon-eye-open'></span> View
+              </a>
+
+              <!-- edit user button -->
+              <a (click)="updateUser(user.userID)" class='btn btn-info m-r-5px shadow'>
+                <span class='glyphicon glyphicon-edit'></span> Edit
+              </a>
+
+              <!-- delete user button -->
+              <a (click)="deleteUser(user.userID)" class='btn btn-danger m-r-5px shadow'>
+                <span class='glyphicon glyphicon-remove'></span> Delete
+              </a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 col-sm-12">
+      <div class='page-header'>
+        <h1>Public JSON files</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 col-sm-12">
+      <div class="col-md-12 col-sm-12">
+        <div class='page-header'>
+          <h2>Sequence Files</h2>
+        </div>
+      </div>
+
+      <div class="row m-b-18px">
+        <div class="col-md-12 col-sm-12">
+          <!-- button to create new product -->
+          <a (click)="createSeq()" class='btn btn-primary pull-right shadow'>
+            <span class='glyphicon glyphicon-plus'></span> Create New Sequence File
+          </a>
+        </div>
+      </div>
+      <!-- HTML table for our list of product records -->
+      <div class="table-responsive">
+        <table class='table  table-bordered'>
+
+          <tr class="bg-success">
+            <th class="text-align-center">filename</th>
+            <th class="text-align-center">Updated BY</th>
+            <th class="text-align-center">Actions</th>
+          </tr>
+
+          <!-- Use *ngFor directive to loop throught our list of users. -->
+          <tbody *ngFor="let file of files">
+            <tr *ngFor="let data of file.sequenceFiles" class="table-hover bg-lightgray text-align-center">
+
+              <td (click)="readJsonData(data._id,'sequenceFiles')">{{data.filename}}</td>
+              <td (click)="readJsonData(data._id,'sequenceFiles')">{{file.updatedBy}}</td>
+              <td>
+                <!-- read one user button -->
+                <a (click)="readJsonData(data._id,'sequenceFiles')" class='btn btn-primary m-r-5px shadow'>
+                  <span class='glyphicon glyphicon-eye-open'></span> View
+                </a>
+
+                <!-- edit user button -->
+                <a (click)="updatePublicSequencefiles(data.url)" class='btn btn-info m-r-5px shadow'>
+                  <span class='glyphicon glyphicon-edit'></span> Replace
+                </a>
+
+                <a (click)="downloadFile(data.downloadLink)" class='btn btn-success m-r-5px shadow'>
+                  <span class='glyphicon glyphicon-download'></span> Download
+                </a>
+
+                <!-- delete user button -->
+                <a (click)="deleteSequencefile(data._id)" class='btn btn-danger m-r-5px shadow'>
+                  <span class='glyphicon glyphicon-remove'></span> Delete
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 col-sm-12">
+      <div class="col-md-12 col-sm-12">
+        <div class='page-header'>
+          <h2>Test Files</h2>
+        </div>
+      </div>
+
+      <div class="row m-b-18px">
+        <div class="col-md-12 col-sm-12">
+          <!-- button to create new product -->
+          <a (click)="createTest()" class='btn btn-primary pull-right shadow'>
+            <span class='glyphicon glyphicon-plus'></span> Create New Test File
+          </a>
+        </div>
+      </div>
+      <!-- HTML table for our list of product records -->
+      <div class="">
+        <div class="table-responsive">
+          <table class='table  table-bordered '>
+    
+            <tr class="bg-success">
+              <th class="text-align-center">filename</th>
+              <th class="text-align-center">Updated BY</th>
+              <th class="text-align-center">Actions</th>
+            </tr>
+    
+            <!-- Use *ngFor directive to loop throught our list of users. -->
+            <tbody *ngFor="let file of files">
+              <tr *ngFor="let data of file.testFiles" class="table-hover bg-lightgray text-align-center">
+    
+                <td (click)="readJsonData(data._id,'testFiles')">{{data.filename}}</td>
+                <td (click)="readJsonData(data._id,'testFiles')">{{file.updatedBy}}</td>
+                <td>
+                  <!-- read one user button -->
+                  <a (click)="readJsonData(data._id,'testFiles')" class='btn btn-primary m-r-5px shadow'>
+                    <span class='glyphicon glyphicon-eye-open'></span> View
+                  </a>
+    
+                  <!-- edit user button -->
+                  <a (click)="updatePublicTestfiles(data._id)" class='btn btn-info m-r-5px shadow'>
+                    <span class='glyphicon glyphicon-edit'></span> Replace
+                  </a>
+    
+                  <a (click)="downloadFile(data.downloadLink)" class='btn btn-success m-r-5px shadow'>
+                    <span class='glyphicon glyphicon-download'></span> Download
+                  </a>
+    
+                  <!-- delete user button -->
+                  <a (click)="deleteTestfile(data._id)" class='btn btn-danger m-r-5px shadow'>
+                    <span class='glyphicon glyphicon-remove'></span> Delete
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
